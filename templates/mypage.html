@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+マイトップ
+{% endblock %}
+
+
+{% block content %}
+<table>
+    <tr>
+        <td><img width="70" height="60" src="{{ MEDIA_URL }}/images/404.png" /></td>
+        <td><h3>{{ user.username }}</h3></td>
+    </tr>
+</table>
+<a href="/withdrawal/add/">退会</a>
+<a href="/inquery/add/">問い合わせ</a>
+<a href="{% url auth_password_change %}">アカウント編集</a>
+
+<table bordercolor="#000000">
+    <tr>
+        <td><h3>質問:XX件　回答:XX件　ポイント:hogehogeポイント</h3></td>
+    </tr>
+</table>
+<p><a href="/thread/new/">質問する</a>
+
+<table>
+    <tr>
+        <td width="50%">
+            最近した質問
+            {% for thread in object_list %}
+            <div><a href="/thread/{{ thread.id }}/">{{ thread.title }}</a>({{ thread.comment_set.count }})</div>
+            {% endfor %}
+        </td>
+        <td>
+            最近した回答
+            {% for thread in object_list %}
+            <div><a href="/thread/{{ thread.id }}/">{{ thread.title }}</a>({{ thread.comment_set.count }})</div>
+            {% endfor %}
+        </td>
+    </tr>
+</table>
+{% endblock %}
+

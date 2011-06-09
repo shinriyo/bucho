@@ -1,0 +1,8 @@
+{% load i18n %}
+以下のリンクから教えて!buchoのユーザ認証を完了してください。
+
+http://localhost:8000{% url registration_activate activation_key %}
+
+{% blocktrans %}
+{{ expiration_days }}日有効です。
+{% endblocktrans %}

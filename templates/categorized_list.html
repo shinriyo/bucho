@@ -1,0 +1,23 @@
+<html>
+<head>
+<style><!-- td {border solid 1px black;} --></style>
+</head>
+<body>
+    {% for category in categories %}
+    <h1>{{ category.name }}</h1>
+        <table>
+        <tr><td>タイトル</td><td>内容</td></tr>
+        {% for todo in category.todo_set.all %}
+        <tr>
+            <td>{{ todo.title }}</td>
+            <td>{{ todo.description }}</td>
+            <td>{% if todo.is_finished %}Finished{% else %}Not yet finished
+                {% endif %}</td>
+            <td>{{ todo.priority }}</td>
+            <td>{{ todo.category }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+    {% endfor %}
+</body>
+</html>

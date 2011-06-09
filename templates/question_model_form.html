@@ -1,0 +1,18 @@
+<html>
+    <body>
+        <h1 align="center">質問</h1>
+        <form action="./" method="POST">
+            <table align="center">
+               {% if form.errors %}
+               <tr><td></td><td><ul class="errorlist"><font color="red">各フィールドは必須です。</font></ul></td></tr>
+               {% endif  %}
+                <tr><td>タイトル</td><td>{{ form.title }}</td></tr>
+                <tr><td>内容</td><td>{{ form.descriotion }}</td></tr>
+                <tr><td>メダル</td><td>{{ form.medal }}</td></tr>
+                <tr><td>（あとでけす）</td><td>{{ form.is_finished }}</td></tr>
+                <tr><td>答え（あとでけす）</td><td>{{ form.answer }}</td></tr>
+                <tr><td><input align="center" type=submit value="　質問する　"></td></tr>
+            </table>
+        </form>
+    </body>
+</html>

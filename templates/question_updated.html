@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <style><!-- td {border solid 1px black;} --></style>
+    </head>
+<body>
+    {% if not questions %}
+    登録されている質問はありません。
+    {% endif %}
+    回答:XXX件数
+
+    回答x:XXXさんからの回答
+    <table>
+        {% for question in questions %}
+        <tr>
+            <td>{{ question.title }}</td>
+            <td>{% if question.is_finished %}Finished{% else %}Not yet finished
+                {% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <table>
+    <tr><td>
+    回答x:XXXさんからの回答
+    </td></tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div align="center"><h1>会員登録</h1></div>
+<form align="center" method="post" action=".">
+{{ form.as_p }}
+
+<!-- 
+  {% if form.errors %}
+  <ul class="errorlist"><font color="red">このフィールドは必須です。</font></ul> 
+  {% endif  %}
+  <p><label for="id_username">ニックネーム</label> <input id="id_username" type="text" class="required" name="username" maxlength="30" /></p> 
+
+  {% if form.errors %}
+  <ul class="errorlist"><font color="red">有効なメールアドレスを入力してください。</font></ul> 
+  {% endif  %}
+  <p><label for="id_email">メールアドレス</label> <input name="email" value="beproud" class="required" maxlength="75" type="text" id="id_email" /></p>
+
+
+  {% if form.errors %}
+  <ul class="errorlist"><font color="red">有効なパスワードを入力してください。</font></ul> 
+  {% endif  %}
+  <p><label for="id_password1">パスワード</label> <input id="id_password1" type="password" class="required" name="password1" /></p>
+
+  {% if form.errors %}
+  <ul class="errorlist"><font color="red">有効なパスワード(確認)を入力してください。</font></ul> 
+  {% endif  %}
+  <p><label for="id_password2">パスワード(確認)</label> <input id="id_password2" type="password" class="required" name="password2" /></p> 
+ -->
+  <input type="submit" value="登録" />
+</form>
+{% endblock %}

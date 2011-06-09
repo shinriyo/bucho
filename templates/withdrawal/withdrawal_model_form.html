@@ -1,0 +1,21 @@
+{% extends "base_with_table.html" %}
+{% load i18n %}
+
+{% block title %}
+退会フォーム
+{% endblock %}
+
+{% block content %}
+<h1 align="center">退会</h1>
+    <form action="./" method="POST">
+        <table align="center">
+        {% if form.errors %}
+            <tr><td></td><td><ul class="errorlist"><font color="red">退会理由は必須です。</font></ul></td></tr>
+            {% endif  %}
+            <tr><td align="center">退会理由</td></tr>
+            <tr><td>{{ form.reason }}</td></tr>
+            <tr><td align="center"><input type=submit value="退会する"></td></tr>
+        </table>
+    </form>
+</html>
+{% endblock %}

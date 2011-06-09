@@ -1,0 +1,21 @@
+<html>
+    <body>
+        <form action="./" method="GET">
+            <table>{{ form }}</table>
+            <input type=submit>
+        </form>
+        <hr>
+        {% if results %}
+        <table>
+            <tr><td>タイトル</td><td>カテゴリ</td><td>内容</td></tr>
+            {% for t in results %}
+            <tr>
+                <td>{{ t.title }}</td>
+                <td>{{ t.category }}</td>
+                <td>{{ t.description }}</td>
+            </tr>
+            {% endfor %}
+       </table>
+       {% endif %}
+    </body>
+</html>

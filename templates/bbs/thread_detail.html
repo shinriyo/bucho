@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ thread.title }}
+{% endblock %}
+
+{% block content %}
+<table>
+    <tr><td>
+        <table>
+            <tr><td valign="top">
+            <b>{{ thread.title }}</b> (獲得bucho point: {{ thread.medal }}P)
+            <table width="500px" height="100px" bordercolor="#000000">
+            <tr><td valign="top">{{ thread.message }}
+            </td></tr>
+        </table>
+        ({{ thread.pub_date }})
+        <br />
+        回答：全{{ comment_list.count }}件
+        <br /><br />
+        {{ today }}
+        {% for comment in comment_list %}
+        {% if True %}
+        <b>いい回答で<font color="red">show!</font></b>
+        {% else %}
+        回答：{{ comment.target_user }}さんからの回答 [<a href="">「いい回答でshow!」にする。</a>]
+        {% endif %}
+        ({{ comment.time_from_pub_date }}前)
+        <table width="500px" height="100px" bordercolor="#000000">
+            <tr><td valign="top">{{ comment.message }}
+            </td></tr>
+        </table>
+        <br />
+        {% endfor %}
+        <br />回答
+        {% if not thread.is_finished or not wrote %}
+        <form action="./" method="post">
+            {{ form.as_p }}
+            <input height="100px" type="submit" value="回答する" />
+        </form>
+        {% endif %}
+        <div><a href="/thread/list/">質問一覧に戻る</a></div>
+
+        </td>
+        <td valign="top">
+
+            <table bordercolor="#000000">
+                <tr><td width="35%"><img width="70" height="60" src="/static_site/images/404.png" />
+                </td><td><b>bucho point</b><br/><h3>XXXP</h3></td></tr>
+                <tr><td colspan="2">
+                    <b>最近した質問</b>
+                    {% if not thread_list %}
+                    <br />最近した質問はありません。
+                    {% endif %}
+                    {% for thread in thread_list %}
+                    <div><a href="/thread/{{ thread.id }}/">{{ thread.title }}</a>({{ thread.comment_set.count }})</div>
+                    {% endfor %}
+                    <br />
+                    <b>最近した回答</b>
+                    {% if not commented_list  %}
+                    <br />最近した回答はありません。
+                    {% endif %}
+                    {% for commented in commented_list %}
+                    <div><a href="/thread/{{ commented.thread.id }}/">{{ commented.thread.title }}</a>({{ commented.thread.comment_set.count }})</div>
+                    {% endfor %}
+                </td></tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+{% endblock %}

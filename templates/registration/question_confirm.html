@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div align="center"><h1>質問</h1></div>
+<form align="center" method="post" action=".">
+    <p><label for="id_new_password2">内容</label>
+       <textarea name="question" id="question">
+       </textarea>
+    </p> 
+
+    <input type="submit" value="質問する" />
+</form>
+{% endblock %}

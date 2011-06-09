@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <style><!-- td {border solid 1px black;} --></style>
+    </head>
+<body>
+    {% if not questions %}
+    登録されている質問はありません。
+    {% endif %}
+最近された質問一覧
+まだ未回答の質問
+    <table>
+        {% for question in questions %}
+        <tr>
+            <td>{{ question.title }}</td>
+            <td>{% if question.is_finished %}Finished{% else %}Not yet finished
+                {% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="">まだ未回答の質問</a>
+    <a href="">最近された質問</a>
+</body>
+</html>

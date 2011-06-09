@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+質問
+{% endblock %}
+
+{% block content %}
+<table>
+    <tr>
+        <td valign="top" width="70%">
+
+<h1>質問</h1>
+<form action="./" method="post">
+<table>
+    {{ form }}
+    <tr><th></th><td><input type="submit" value="質問する" /></td></tr>
+</table>
+</form>
+<p><a href="/thread/list/">質問一覧に戻る</a></p>
+
+    </td>
+        <td valign="top">
+            <table bordercolor="#000000">
+                <tr><td width="35%"><img width="70" height="60" src="/static_site/images/404.png" />
+                </td><td><b>bucho point</b><br/><h3>XXXP</h3></td></tr>
+                    <tr><td colspan="2">
+                    <b>最近した質問</b>
+                    {% if not thread_list %}
+                    <br />最近した質問はありません。
+                    {% endif %}
+                    {% for thread in thread_list %}
+                    <div><a href="/thread/{{ thread.id }}/">{{ thread.title }}</a>({{ thread.comment_set.count }})</div>
+                    {% endfor %}
+                    <br />
+                    <b>最近した回答</b>
+                    {% if not commented_list  %}
+                    <br />最近した回答はありません。
+                    {% endif %}
+                    {% for commented in commented_list %}
+                    <div><a href="/thread/{{ commented.thread.id }}/">{{ commented.thread.title }}</a>({{ commented.thread.comment_set.count }})    </div>
+                    {% endfor %}
+                </td></tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+{% endblock %}

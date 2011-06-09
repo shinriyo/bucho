@@ -1,0 +1,48 @@
+{% load i18n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <link rel="stylesheet" href="/style.css" />
+    <title>{% block title %}User test{% endblock %}</title>
+</head>
+
+<body>
+    <div id="header">
+        <a style="text-decoration: none;" href="{% url index %}">
+            <h1><font color="black">教えて！</font><font color="red">bucho</font>
+            </h1>
+        </a>
+        {% block header %}
+
+    {% if user.is_authenticated %}
+    <table align="right">
+    <tr><td>
+          <div align="right">ようこそ、{{ user.username }}さん</div></td>
+        <td>
+        <table bordercolor="#000000">
+        <tr><td>
+        <a href="{% url auth_logout %}">ログアウト</a> 
+        <a href="/mypage/">マイページ</a> 
+        </td></tr>
+        </table>
+    </td></tr>
+    </table>
+
+    {% else %}
+    <a href="{% url auth_login %}">ログイン</a>
+    {% endif %}
+        <br /><br />
+        <hr noshade />
+        {% endblock %}
+    </div>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    <div id="footer">
+        {% block footer %}
+        <br /><div align="center">Copyright(c) 2011 bucho Inc. All</div>
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "base_with_table.html" %}
+{% load i18n %}
+
+{% block title %}
+問い合わせ
+{% endblock %}
+
+{% block content %}
+<h1 align="center">問い合わせ</h1>
+     <form action="./" method="POST">
+        <table align="center">
+        {{ form.as_table }}
+        <tr><th></th><td><input align="center" type=submit value="確定"></td></tr>
+     </table>
+</form>
+{% endblock %}
+

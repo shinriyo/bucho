@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+教えて！bucho
+{% endblock %}
+
+{% block content %}
+
+<table>
+    <tr><td valign="top" width="70%">
+    <b>最近された質問</b>
+    <a href="/">もっと見る</a>
+
+
+    <br />
+    <b>まだ未回答の質問</b>
+    <a href="/">もっと見る</a>
+
+
+    </td>
+
+    <td valign="top">
+    <table bordercolor="#000000">
+        <tr><td width="35%"><img width="70" height="60" src="{{ MEDIA_URL }}/images/404.png" />
+        </td><td><b>bucho point</b><br/><h3>XXXP</h3></td></tr>
+        <tr><td colspan="2">
+            <b>最近した質問</b><br />
+            <b>最近した回答</b>
+        </td></tr>
+    </table>
+    </tr>
+</table>
+{% endblock %}
+
