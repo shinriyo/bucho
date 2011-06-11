@@ -40,3 +40,4 @@ def question_updated(request, question_id):
     question = Question.objects.get(id=int(question_id))
     message = u'AAAAAAA' %(question.title)
     return HttpResponse(message)
+

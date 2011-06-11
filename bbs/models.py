@@ -5,12 +5,15 @@ from django.contrib.auth.models import User
 import datetime
 MEDAL_CHOICES = tuple([(str(i), int(i)) for i in range(1, 11)])
 
+from django.db import models
+from django.contrib.auth.models import User
 class ExtendUser(models.Model):
-    target_user = models.ForeignKey(User, unique=False)
-    medal = models.IntegerField(blank=False)
+    medal = models.IntegerField(blank=True)
+    user = models.ForeignKey(User, unique=True)
 
 class Thread(models.Model):
-    target_user = models.ForeignKey(User, unique=True, verbose_name=u'ユーザ', blank=False)
+    target_user = models.ForeignKey(User, unique=False, verbose_name=u'ユーザ', blank=False)
+#    target_user = models.ForeignKey(User, unique=True, verbose_name=u'ユーザ', blank=False)
     title = models.CharField(u'タイトル', max_length=200, blank=False)
     message = models.TextField(u'内容', blank=False)
     medal = models.CharField('メダル', max_length=2, choices=MEDAL_CHOICES, default='1')

@@ -1,0 +1,9 @@
+# settings.py
+set your password!
+MAIL_HOST_PASSWORD = ''
+
+#github
+https://github.com/shinriyo/bucho
+
+# BASE TEMPLATE
+emplates/base.html

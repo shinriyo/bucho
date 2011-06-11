@@ -9,13 +9,16 @@ from django.contrib.auth.models import User
 
 def thread_new(request):
     user = User.objects.filter(id=request.user.id)
+    exuser = ExtendUser.objects.get(user=request.user.id) # answered
     if request.POST:
         form = ThreadForm(request.POST)
         if form.is_valid():
             u = form.save(commit=False)
-            exuser = ExtendUser.objects.get(target_user=request.user.id) # answered
-            exuser.medal -= request.POST['medal']
-            u.target_user = request.user
+            exuser.medal -= int(request.POST['medal'])
+            # TODO when medal is empty
+            exuser.save()
+            u.target_user_id = request.user.id
+            u.user = request.user
             u.save()
             return HttpResponseRedirect('/thread/list/')
     else:
@@ -26,6 +29,7 @@ def thread_new(request):
     return render_to_response('bbs/thread_form.html',
         {'commented_list': commented_list,
          'user': user,
+         'exuser': exuser,
          'thread_list': thread_list,
          'form': form})
 
@@ -33,6 +37,7 @@ def thread_list(request):
     user = User.objects.filter(id=request.user.id)
     commented_list = Comment.objects.filter(target_user=request.user.id) # answered
     thread_list = Thread.objects.all()
+    exuser = ExtendUser.objects.get(user=request.user.id) # TODO
 
     paginator = Paginator(thread_list, 10)
     try:
@@ -47,6 +52,7 @@ def thread_list(request):
 
     return render_to_response('bbs/thread_list.html',
         {'commented_list': commented_list,
+         'exuser': exuser, # TODO
          'thread_list': thread_list,
          'contacts': contacts})
 
@@ -77,12 +83,15 @@ def thread_detail(request, thread_id):
     commented_list = Comment.objects.filter(target_user=request.user.id) # answered
 
     user = User.objects.filter(id=request.user.id)
+    exuser = ExtendUser.objects.get(user=request.user.id) # TODO
+
     return render_to_response('bbs/thread_detail.html',
     {'thread': thread,
         'user': user,
         'thread_list': thread_list, #最近した質問
         'commented_list': commented_list, #最近した回答
         'comment_list': comment_list,
+        'exuser': exuser, # TODO
         'wrote': wrote,
         'form': form})
 

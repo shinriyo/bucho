@@ -83,5 +83,4 @@ urlpatterns = patterns('',
     # added
     (r'^inquery_confirm$', direct_to_template, { 'template': 'registration/inquery_confirm.html' }, 'inquery'),
     (r'^question_confirm$', direct_to_template, { 'template': 'registration/question_confirm.html' }, 'question'),
-
 )
