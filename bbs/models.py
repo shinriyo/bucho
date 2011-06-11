@@ -13,7 +13,6 @@ class ExtendUser(models.Model):
 
 class Thread(models.Model):
     target_user = models.ForeignKey(User, unique=False, verbose_name=u'ユーザ', blank=False)
-#    target_user = models.ForeignKey(User, unique=True, verbose_name=u'ユーザ', blank=False)
     title = models.CharField(u'タイトル', max_length=200, blank=False)
     message = models.TextField(u'内容', blank=False)
     medal = models.CharField('メダル', max_length=2, choices=MEDAL_CHOICES, default='1')

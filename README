@@ -7,3 +7,7 @@ https://github.com/shinriyo/bucho
 
 # BASE TEMPLATE
 emplates/base.html
+
+# where is mypage??
+register/views.py
+

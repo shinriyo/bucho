@@ -8,7 +8,7 @@ from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.contrib.auth.models import User
 
 def thread_new(request):
-    user = User.objects.filter(id=request.user.id)
+    user = User.objects.get(id=request.user.id)
     exuser = ExtendUser.objects.get(user=request.user.id) # answered
     if request.POST:
         form = ThreadForm(request.POST)
@@ -34,7 +34,7 @@ def thread_new(request):
          'form': form})
 
 def thread_list(request):
-    user = User.objects.filter(id=request.user.id)
+    user = User.objects.get(id=request.user.id)
     commented_list = Comment.objects.filter(target_user=request.user.id) # answered
     thread_list = Thread.objects.all()
     exuser = ExtendUser.objects.get(user=request.user.id) # TODO
@@ -52,6 +52,7 @@ def thread_list(request):
 
     return render_to_response('bbs/thread_list.html',
         {'commented_list': commented_list,
+         'user': user,
          'exuser': exuser, # TODO
          'thread_list': thread_list,
          'contacts': contacts})
@@ -62,6 +63,7 @@ def thread_detail(request, thread_id):
     @param thread_id: スレッドID
     '''
 
+    user = User.objects.get(id=request.user.id)
     thread = get_object_or_404(Thread, pk=thread_id)
     # コメントをかいたことがある
     wrote = thread.comment_set.filter(id=request.user.id)
@@ -81,8 +83,6 @@ def thread_detail(request, thread_id):
 
     thread_list = Thread.objects.filter(target_user=request.user.id)
     commented_list = Comment.objects.filter(target_user=request.user.id) # answered
-
-    user = User.objects.filter(id=request.user.id)
     exuser = ExtendUser.objects.get(user=request.user.id) # TODO
 
     return render_to_response('bbs/thread_detail.html',

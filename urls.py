@@ -78,7 +78,8 @@ urlpatterns = patterns('',
     (r'^accounts/', include('registration.urls')),
     (r'^$', direct_to_template, { 'template': 'index.html' }, 'index'),
     # mypage
-    (r'^mypage/$', direct_to_template, { 'template': 'mypage.html' }, 'mypage'),
+    #TODO (r'^mypage/$', direct_to_template, { 'template': 'mypage.html' }, 'mypage'),
+    (r'^mypage/$', 'register.views.mypage'),
 
     # added
     (r'^inquery_confirm$', direct_to_template, { 'template': 'registration/inquery_confirm.html' }, 'inquery'),

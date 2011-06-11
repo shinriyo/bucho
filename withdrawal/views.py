@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 
 def add_new_withdrawal(request):
     user = User.objects.filter(id=request.user.id)
+    user = User.objects.get(id=request.user.id)
+
     if request.POST:
         form = WithdrawalForm(request.POST)
         if form.is_valid():
@@ -15,7 +17,9 @@ def add_new_withdrawal(request):
             return HttpResponseRedirect('/withdrawal/updated/%s/' %(new_withdrawal.id))
     else:
         form = WithdrawalForm()
-    return render_to_response('withdrawal/withdrawal_model_form.html', dict(form=form))
+    return render_to_response('withdrawal/withdrawal_model_form.html',
+           {'user':user,
+            'form':form})
 
 from django.http import HttpResponse
 

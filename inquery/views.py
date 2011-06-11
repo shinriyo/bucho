@@ -8,7 +8,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 
 def add_new_inquery(request):
-    user = User.objects.filter(id=request.user.id)
+    user = User.objects.get(id=request.user.id)
     if request.POST:
         form = InqueryForm(request.POST)
         if form.is_valid():
@@ -31,7 +31,6 @@ def inquery_updated(request, inquery_id):
     title = request.POST['type']
     result = send_mail(title , description, email, ['shinriyo@gmail.com'])
 #   serult =  send_mail(title , description, email, [settings.DEFAULT_FROM_EMAIL])
-    
     inquery = Inquery.objects.get(id=int(inquery_id))
     message = u'メッセージ送信が失敗しました。'
 
