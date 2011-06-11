@@ -1,5 +1,4 @@
 # -*- encoding:utf-8 -*-
-
 from django.db import models
 
 MEDAL_CHOICES = tuple([(i, i) for i in range(1, 11)])

@@ -1,6 +1,8 @@
-from django.db import models
+# -*- encoding:utf-8 -*-
 
+from django.db import models
+from datetime import datetime
 class Csvdl(models.Model):
-    prev_date = forms.DateField(u'開始日時', initial=datetime.date.today)
-    end_date = forms.DateField(u'終了日時', initial=datetime.date.today)
+    prev_date = models.DateTimeField(u'開始日時', default=datetime.now)
+    end_date = models.DateTimeField(u'終了日時', default=datetime.now)
 

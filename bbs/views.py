@@ -76,6 +76,7 @@ def thread_detail(request, thread_id):
     thread_list = Thread.objects.filter(target_user=request.user.id)
     commented_list = Comment.objects.filter(target_user=request.user.id) # answered
 
+    user = User.objects.filter(id=request.user.id)
     return render_to_response('bbs/thread_detail.html',
     {'thread': thread,
         'user': user,
